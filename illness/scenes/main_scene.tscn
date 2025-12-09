@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgmjaurcfdxot"]
+[gd_scene load_steps=10 format=3 uid="uid://dgmjaurcfdxot"]
 
 [ext_resource type="Script" uid="uid://dm0c868s1cd3g" path="res://scripts/main_scene.gd" id="1_w2twt"]
 [ext_resource type="Script" uid="uid://m3haint30syf" path="res://scripts/main_control.gd" id="2_7ykc4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c4f0atwkwa0ee" path="res://scripts/hand_panel.gd" id="4_rt2n2"]
 [ext_resource type="Script" uid="uid://xbayjyo4g1fl" path="res://test/button.gd" id="7_c16ls"]
 [ext_resource type="Script" uid="uid://dn8mpbwy3lp5m" path="res://scripts/card_detail_panel.gd" id="8_18nlu"]
+[ext_resource type="Script" uid="uid://dexxwxs2701oi" path="res://test/enter_and_exit_button.gd" id="9_c1pb6"]
 
 [node name="MainScene" type="Node"]
 script = ExtResource("1_w2twt")
@@ -19,7 +20,68 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("2_7ykc4")
+
+[node name="CardDetailPanel" type="Panel" parent="MainControl"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -250.0
+offset_right = 485.0
+grow_vertical = 0
+script = ExtResource("8_18nlu")
+
+[node name="CardContainer" type="Control" parent="MainControl/CardDetailPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 35.0
+offset_top = -125.0
+offset_right = 185.0
+offset_bottom = 125.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CardDetail" type="Control" parent="MainControl/CardDetailPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -125.0
+offset_bottom = 125.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CardDetailLabel" type="Label" parent="MainControl/CardDetailPanel/CardDetail"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "卡牌详情"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnterAndExitButton" type="Button" parent="MainControl/CardDetailPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -125.0
+offset_right = 35.0
+offset_bottom = 125.0
+grow_vertical = 2
+focus_mode = 0
+mouse_filter = 1
+script = ExtResource("9_c1pb6")
 
 [node name="CalenderPanel" type="Panel" parent="MainControl"]
 layout_mode = 1
@@ -29,8 +91,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -475.0
-offset_top = -650.0
-offset_right = 625.0
+offset_top = -600.0
+offset_right = 475.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("3_pu3yx")
@@ -43,9 +105,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -500.0
-offset_top = -300.0
-offset_right = 500.0
+offset_left = -425.0
+offset_top = -250.0
+offset_right = 425.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("4_rt2n2")
@@ -57,26 +119,26 @@ card_detail = "牌11"
 type = 1
 
 [node name="Card2" parent="MainControl/CalenderPanel/HandPanel" instance=ExtResource("2_pw63i")]
-position = Vector2(200, 0)
+position = Vector2(150, 0)
 time = 2
 _name = "医疗牌2"
 card_detail = "牌22"
 
 [node name="Card3" parent="MainControl/CalenderPanel/HandPanel" instance=ExtResource("2_pw63i")]
-position = Vector2(400, 0)
+position = Vector2(300, 0)
 time = 3
 _name = "活动牌3"
 card_detail = "牌33"
 type = 1
 
 [node name="Card4" parent="MainControl/CalenderPanel/HandPanel" instance=ExtResource("2_pw63i")]
-position = Vector2(600, 0)
+position = Vector2(450, 0)
 time = 4
 _name = "医疗牌4"
 card_detail = "牌44"
 
 [node name="Card5" parent="MainControl/CalenderPanel/HandPanel" instance=ExtResource("2_pw63i")]
-position = Vector2(800, 0)
+position = Vector2(600, 0)
 time = 5
 _name = "活动牌5"
 card_detail = "牌55"
@@ -88,11 +150,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -500.0
+offset_left = -425.0
 offset_top = 50.0
-offset_right = 500.0
+offset_right = 425.0
 offset_bottom = 150.0
 grow_horizontal = 2
+mouse_filter = 1
 script = ExtResource("4_gubc5")
 
 [node name="MedicalExecutePanel1" type="Panel" parent="MainControl/CalenderPanel/MedicalPanel"]
@@ -104,52 +167,69 @@ offset_top = -50.0
 offset_right = 100.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MedicalExecutePanel2" type="Panel" parent="MainControl/CalenderPanel/MedicalPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 150.0
+offset_left = 125.0
 offset_top = -50.0
-offset_right = 250.0
+offset_right = 225.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MedicalExecutePanel3" type="Panel" parent="MainControl/CalenderPanel/MedicalPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 300.0
+offset_left = 250.0
 offset_top = -50.0
-offset_right = 400.0
+offset_right = 350.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MedicalExecutePanel4" type="Panel" parent="MainControl/CalenderPanel/MedicalPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 450.0
+offset_left = 375.0
 offset_top = -50.0
-offset_right = 550.0
+offset_right = 475.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MedicalExecutePanel5" type="Panel" parent="MainControl/CalenderPanel/MedicalPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 600.0
+offset_left = 500.0
 offset_top = -50.0
-offset_right = 700.0
+offset_right = 600.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MedicalExecutePanel6" type="Panel" parent="MainControl/CalenderPanel/MedicalPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 625.0
+offset_top = -50.0
+offset_right = 725.0
+offset_bottom = 50.0
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MedicalExecutePanel7" type="Panel" parent="MainControl/CalenderPanel/MedicalPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -159,17 +239,7 @@ offset_top = -50.0
 offset_right = 850.0
 offset_bottom = 50.0
 grow_vertical = 2
-
-[node name="MedicalExecutePanel7" type="Panel" parent="MainControl/CalenderPanel/MedicalPanel"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 900.0
-offset_top = -50.0
-offset_right = 1000.0
-offset_bottom = 50.0
-grow_vertical = 2
+mouse_filter = 1
 
 [node name="BoxContainer" type="Control" parent="MainControl/CalenderPanel/MedicalPanel"]
 layout_mode = 1
@@ -178,6 +248,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ActivityPanel" type="Panel" parent="MainControl/CalenderPanel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -185,11 +256,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -500.0
+offset_left = -425.0
 offset_top = 200.0
-offset_right = 500.0
+offset_right = 425.0
 offset_bottom = 300.0
 grow_horizontal = 2
+mouse_filter = 1
 script = ExtResource("4_gubc5")
 type = 1
 
@@ -202,52 +274,69 @@ offset_top = -50.0
 offset_right = 100.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ActivityExecutePanel2" type="Panel" parent="MainControl/CalenderPanel/ActivityPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 150.0
+offset_left = 125.0
 offset_top = -50.0
-offset_right = 250.0
+offset_right = 225.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ActivityExecutePanel3" type="Panel" parent="MainControl/CalenderPanel/ActivityPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 300.0
+offset_left = 250.0
 offset_top = -50.0
-offset_right = 400.0
+offset_right = 350.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ActivityExecutePanel4" type="Panel" parent="MainControl/CalenderPanel/ActivityPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 450.0
+offset_left = 375.0
 offset_top = -50.0
-offset_right = 550.0
+offset_right = 475.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ActivityExecutePanel5" type="Panel" parent="MainControl/CalenderPanel/ActivityPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 600.0
+offset_left = 500.0
 offset_top = -50.0
-offset_right = 700.0
+offset_right = 600.0
 offset_bottom = 50.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ActivityExecutePanel6" type="Panel" parent="MainControl/CalenderPanel/ActivityPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 625.0
+offset_top = -50.0
+offset_right = 725.0
+offset_bottom = 50.0
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ActivityExecutePanel7" type="Panel" parent="MainControl/CalenderPanel/ActivityPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -257,17 +346,7 @@ offset_top = -50.0
 offset_right = 850.0
 offset_bottom = 50.0
 grow_vertical = 2
-
-[node name="ActivityExecutePanel7" type="Panel" parent="MainControl/CalenderPanel/ActivityPanel"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 900.0
-offset_top = -50.0
-offset_right = 1000.0
-offset_bottom = 50.0
-grow_vertical = 2
+mouse_filter = 1
 
 [node name="BoxContainer" type="Control" parent="MainControl/CalenderPanel/ActivityPanel"]
 layout_mode = 1
@@ -276,8 +355,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="TestButton" type="Button" parent="."]
+[node name="TestButton" type="Button" parent="MainControl"]
+layout_mode = 0
 offset_left = 676.0
 offset_top = 178.0
 offset_right = 776.0
@@ -287,47 +368,75 @@ text = "测试：
 增加一张牌"
 script = ExtResource("7_c16ls")
 
-[node name="CardDetailPanel" type="Panel" parent="."]
-anchors_preset = 2
+[node name="EndPanel" type="Panel" parent="MainControl"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -300.0
-offset_right = 485.0
+offset_left = -485.0
+offset_top = -100.0
+grow_horizontal = 0
 grow_vertical = 0
-script = ExtResource("8_18nlu")
 
-[node name="CardContainer" type="Control" parent="CardDetailPanel"]
+[node name="DeckPanel" type="Panel" parent="MainControl/EndPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -150.0
-offset_right = 200.0
-offset_bottom = 150.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
 grow_vertical = 2
 
-[node name="CardDetail" type="Control" parent="CardDetailPanel"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -285.0
-offset_top = -150.0
-offset_bottom = 150.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="CardDetailLabel" type="Label" parent="CardDetailPanel/CardDetail"]
+[node name="DeckLabel" type="Label" parent="MainControl/EndPanel/DeckPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "卡牌详情"
+text = "牌堆"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_down" from="TestButton" to="TestButton" method="_on_button_down"]
+[node name="TrashDeckPanel" type="Panel" parent="MainControl/EndPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TrashDeckLabel" type="Label" parent="MainControl/EndPanel/TrashDeckPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "弃牌堆"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeckPanel" type="Panel" parent="MainControl"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -485.0
+offset_top = -600.0
+offset_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[connection signal="button_down" from="MainControl/CardDetailPanel/EnterAndExitButton" to="MainControl/CardDetailPanel/EnterAndExitButton" method="_on_button_down"]
+[connection signal="button_down" from="MainControl/TestButton" to="MainControl/TestButton" method="_on_button_down"]

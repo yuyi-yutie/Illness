@@ -26,14 +26,14 @@ var hover_card : Card:
 	set(value):
 		hover_card = value
 		var box : Control = CALENDER_BOX.instantiate()
-		if hover_card != null and hover_card.time > 0 and hover_card.type == hover_card.CARDTYPE.Medical: 
-			box.scale.x = (hover_card.time - 1) * 1.5 + 1
-			box.position.x = medical_occupy_time * 150
+		if hover_card != null and hover_card.time > 0 and hover_card.type == hover_card.CARDTYPE.Medical and hover_card.time + medical_occupy_time <= 7: 
+			box.scale.x = (hover_card.time - 1) * 1.25 + 1
+			box.position.x = medical_occupy_time * 125
 			medical_box_container.add_child(box)
 			medical_panel.has_box = true
-		elif hover_card != null and hover_card.time > 0 and hover_card.type == hover_card.CARDTYPE.Activity: 
-			box.scale.x = (hover_card.time - 1) * 1.5 + 1
-			box.position.x = activity_occupy_time * 150
+		elif hover_card != null and hover_card.time > 0 and hover_card.type == hover_card.CARDTYPE.Activity and hover_card.time + activity_occupy_time <= 7: 
+			box.scale.x = (hover_card.time - 1) * 1.25 + 1
+			box.position.x = activity_occupy_time * 125
 			activity_box_container.add_child(box)
 			activity_panel.has_box = true
 		if hover_card == null:
