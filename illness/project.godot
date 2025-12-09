@@ -11,5 +11,19 @@ config_version=5
 [application]
 
 config/name="Illness"
+run/main_scene="uid://dgmjaurcfdxot"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+HandToExecutePanel="*res://global/hand_to_execute_panel.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbqqjhwje72mp"]
+
+[ext_resource type="Script" uid="uid://7m1pvaeu7ysr" path="res://scripts/card.gd" id="1_6u4wf"]
+[ext_resource type="Texture2D" uid="uid://c0odgwslexpky" path="res://icon.svg" id="1_d81rb"]
+
+[node name="Card" type="Node2D"]
+script = ExtResource("1_6u4wf")
+
+[node name="CardFace" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.376471)
+offset_right = 150.0
+offset_bottom = 250.0
+
+[node name="NamePanel" type="Panel" parent="CardFace"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 40.0
+
+[node name="NameLabel" type="Label" parent="CardFace/NamePanel"]
+layout_mode = 0
+offset_right = 130.0
+offset_bottom = 30.0
+text = "卡牌名"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PicturePanel" type="Panel" parent="CardFace"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 140.0
+offset_bottom = 180.0
+
+[node name="TextureRect" type="TextureRect" parent="CardFace/PicturePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_d81rb")
+
+[node name="TimePanel" type="Panel" parent="CardFace"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 190.0
+offset_right = 140.0
+offset_bottom = 240.0
+
+[node name="TimeLabel" type="Label" parent="CardFace/TimePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "消耗时间"
+horizontal_alignment = 1
+vertical_alignment = 1
