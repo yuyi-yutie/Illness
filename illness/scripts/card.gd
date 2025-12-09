@@ -13,25 +13,29 @@ class_name Card
 @onready var time_label: Label = $CardFace/TimePanel/TimeLabel
 @onready var name_label: Label = $CardFace/NamePanel/NameLabel
 
+@onready var card_buff_manager: CardBuffManager = $CardBuffManager
+
 @export var time : int
 @export var _name : String
+@export var card_detail : String
+@export var type : CARDTYPE
+
+enum CARDTYPE {
+	Medical ,
+	Activity
+}
 
 var card_id : int
 
 var label_time : int = -1 :
-	get:
-		return label_time
 	set(value):
 		label_time = value
 		time_label.text = str(label_time)
 
 var label_name : String = "CARD" :
-	get:
-		return label_name
 	set(value):
 		label_name = value
 		name_label.text = label_name
-
 
 @onready var card_face: Panel = $CardFace
 
@@ -45,3 +49,23 @@ func initialize(parameter : HandPanel) -> void:
 	
 	label_time = time
 	label_name = _name
+
+var mouse_in : bool = false
+
+func _on_card_face_mouse_entered() -> void:
+	CardToDetail.hover_card = self
+	HandToExecutePanel.hover_card = self
+	mouse_in = true
+
+func _on_card_face_mouse_exited() -> void:
+	if CardToDetail.hover_card == self:
+		CardToDetail.hover_card = null
+	if HandToExecutePanel.hover_card == self:
+		HandToExecutePanel.hover_card = null
+	mouse_in = false
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("LeftClick"):
+			if mouse_in:
+				card_buff_manager.execute_buff()

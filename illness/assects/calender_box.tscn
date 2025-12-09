@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6phraos5uw6a"]
+
+[ext_resource type="Texture2D" uid="uid://b252q7ra1g10t" path="res://assects/box_100x100.png" id="1_yih0k"]
+
+[node name="CalenderBox" type="TextureRect"]
+texture = ExtResource("1_yih0k")
