@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqr2tljf25i0j"]
+
+[ext_resource type="Script" uid="uid://bsp44wgqxk8n4" path="res://scripts/card/card.gd" id="1_imta7"]
+[ext_resource type="Texture2D" uid="uid://d3ig2jnafv5tp" path="res://icon.svg" id="1_qnn7r"]
+
+[node name="Card" type="Panel" node_paths=PackedStringArray("name_label", "time_label", "card_picture")]
+offset_right = 150.0
+offset_bottom = 250.0
+script = ExtResource("1_imta7")
+name_label = NodePath("NamePanel/NameLabel")
+time_label = NodePath("TimePanel/TimeLabel")
+card_picture = NodePath("CardPicture")
+
+[node name="NamePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 30.0
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="NamePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "卡牌名"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardPicture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 140.0
+offset_bottom = 170.0
+mouse_filter = 2
+texture = ExtResource("1_qnn7r")
+
+[node name="TimePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 180.0
+offset_right = 140.0
+offset_bottom = 240.0
+mouse_filter = 2
+
+[node name="TimeLabel" type="Label" parent="TimePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "时间"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

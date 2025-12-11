@@ -1,0 +1,202 @@
+[gd_scene load_steps=5 format=3 uid="uid://b76r0tvur6ts8"]
+
+[ext_resource type="Script" uid="uid://16i04oith8r2" path="res://scripts/play_scene/calender_panel/calender_panel.gd" id="1_swrtb"]
+[ext_resource type="Script" uid="uid://c2fovslvlxy0s" path="res://scripts/play_scene/calender_panel/calender_face.gd" id="2_qgaqk"]
+[ext_resource type="Script" uid="uid://v1171det0k1o" path="res://scripts/play_scene/calender_panel/medical_and_activity_panel.gd" id="3_ysl3n"]
+[ext_resource type="Script" uid="uid://ktlwwglr32gd" path="res://scripts/play_scene/calender_panel/schedule_box.gd" id="4_j5sjl"]
+
+[node name="Calender" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_swrtb")
+
+[node name="CalenderPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -475.0
+offset_top = -550.0
+offset_right = 475.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_qgaqk")
+
+[node name="MedicalPanel" type="Control" parent="CalenderPanel"]
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 900.0
+offset_bottom = 150.0
+mouse_filter = 2
+script = ExtResource("3_ysl3n")
+
+[node name="MedicalSlot1" type="Panel" parent="CalenderPanel/MedicalPanel"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="MedicalSlot2" type="Panel" parent="CalenderPanel/MedicalPanel"]
+layout_mode = 0
+offset_left = 125.0
+offset_right = 225.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="MedicalSlot3" type="Panel" parent="CalenderPanel/MedicalPanel"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 350.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="MedicalSlot4" type="Panel" parent="CalenderPanel/MedicalPanel"]
+layout_mode = 0
+offset_left = 375.0
+offset_right = 475.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="MedicalSlot5" type="Panel" parent="CalenderPanel/MedicalPanel"]
+layout_mode = 0
+offset_left = 500.0
+offset_right = 600.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="MedicalSlot6" type="Panel" parent="CalenderPanel/MedicalPanel"]
+layout_mode = 0
+offset_left = 625.0
+offset_right = 725.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="MedicalSlot7" type="Panel" parent="CalenderPanel/MedicalPanel"]
+layout_mode = 0
+offset_left = 750.0
+offset_right = 850.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="ScheduleBox" type="Control" parent="CalenderPanel/MedicalPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_j5sjl")
+
+[node name="ABSceduleBox" type="Control" parent="CalenderPanel/MedicalPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_j5sjl")
+sb_or_ab = 1
+
+[node name="ActivityPanel" type="Control" parent="CalenderPanel"]
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 175.0
+offset_right = 900.0
+offset_bottom = 275.0
+script = ExtResource("3_ysl3n")
+type = 1
+
+[node name="ActivitySlot1" type="Panel" parent="CalenderPanel/ActivityPanel"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="ActivitySlot2" type="Panel" parent="CalenderPanel/ActivityPanel"]
+layout_mode = 0
+offset_left = 125.0
+offset_right = 225.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="ActivitySlot3" type="Panel" parent="CalenderPanel/ActivityPanel"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 350.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="ActivitySlot4" type="Panel" parent="CalenderPanel/ActivityPanel"]
+layout_mode = 0
+offset_left = 375.0
+offset_right = 475.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="ActivitySlot5" type="Panel" parent="CalenderPanel/ActivityPanel"]
+layout_mode = 0
+offset_left = 500.0
+offset_right = 600.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="ActivitySlot6" type="Panel" parent="CalenderPanel/ActivityPanel"]
+layout_mode = 0
+offset_left = 625.0
+offset_right = 725.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="ActivitySlot7" type="Panel" parent="CalenderPanel/ActivityPanel"]
+layout_mode = 0
+offset_left = 750.0
+offset_right = 850.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="ScheduleBox" type="Control" parent="CalenderPanel/ActivityPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_j5sjl")
+type = 1
+
+[node name="ABSceduleBox" type="Control" parent="CalenderPanel/ActivityPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_j5sjl")
+type = 1
+sb_or_ab = 1
+
+[node name="HandPanel" type="Panel" parent="CalenderPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -425.0
+offset_top = -250.0
+offset_right = 425.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2

@@ -11,27 +11,20 @@ config_version=5
 [application]
 
 config/name="Illness"
-run/main_scene="uid://dgmjaurcfdxot"
+run/main_scene="uid://csxfeql8s4040"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-HandToExecutePanel="*res://global/hand_to_execute_panel.gd"
-CardToDetail="*res://global/card_to_detail.gd"
+CalenderGlue="*res://globals/calender_glue.gd"
+CardGlue="*res://globals/card_glue.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-
-[input]
-
-LeftClick={
-"deadzone": 0.2,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(441, 35),"global_position":Vector2(455, 108),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
-]
-}
+window/stretch/mode="viewport"
 
 [rendering]
 

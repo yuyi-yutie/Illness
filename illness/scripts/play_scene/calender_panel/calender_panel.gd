@@ -1,9 +1,9 @@
-extends Panel
-class_name CalenderPanel
+extends Control
+class_name Calender
 
-var parent : MainControl
+var parent : PlayScene
 
-func initialize(parameter : MainControl) -> void:
+func initialize(parameter : PlayScene) -> void:
 	parent = parameter
 	for child in get_children():
 		if child.has_method("initialize"):
