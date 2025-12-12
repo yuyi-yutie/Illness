@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CalenderGlue="*res://globals/calender_glue.gd"
 CardGlue="*res://globals/card_glue.gd"
+DeckGlue="*res://globals/deck_glue.gd"
 
 [display]
 
