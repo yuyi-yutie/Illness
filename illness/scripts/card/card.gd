@@ -4,6 +4,8 @@ class_name Card
 @export var name_label : Label
 @export var time_label : Label
 
+var id : int
+
 #region 类别
 
 enum CardType {

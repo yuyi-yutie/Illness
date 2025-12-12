@@ -18,3 +18,20 @@ var current_hover_card : Card = null :
 		else:
 			fake_card_panel.visible = false
 			card_detail_label.text = ""
+
+var card_array : Array[Card]
+var current_id : int = -1
+#因为开头要+1，所以这里取-1，初始值就为0
+
+func get_id(card : Card) -> int:
+	#卡牌将要放入卡组和手牌时（即玩家将永久获得某张卡牌时），赋值id，以后取牌也是从id获取
+	current_id += 1
+	card_array[current_id] = card
+	return current_id
+
+func refresh_card_id_dic() -> void:
+	card_array.clear()
+	current_id = -1
+
+func get_card(id : int) -> Card:
+	return card_array[id]

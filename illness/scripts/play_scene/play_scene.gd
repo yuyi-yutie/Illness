@@ -8,11 +8,8 @@ func _ready() -> void:
 	initialize()
 
 func initialize() -> void:
-	var calender : Control = CALENDER.instantiate()
-	add_child(calender)
-	var card_detail : Control = CARD_DETAIL.instantiate()
-	add_child(card_detail)
 	
+	#这里写所有子节点初始化的操作
 	for child in get_children():
 		if child.has_method("initialize"):
 			child.initialize(self)
