@@ -1,11 +1,17 @@
 extends Node
 
+#管理牌堆的脚本
+
 var card_size : Vector2 = Vector2( 150 , 250 )
 #大概是不会改卡牌的尺寸的
 
+var whole_deck : Array[Card]
+#whole_deck是有序的，按id从前往后排
+
 var deck : Array[Card]
-#deck是无序的，只包含了卡组中的所有卡牌
+#deck是有序的，包含了抽牌堆中的所有卡牌，是按抽牌顺序排的
 var trash_deck : Array[Card]
+#trash_deck是有序的，包含了弃牌堆中的所有卡牌，是按弃牌顺序排的
 
 var deck_card_control : Control :
 	set(value):
@@ -22,26 +28,62 @@ var in_trash_deck : bool = false :
 
 var current_deck_row_count : int = 0
 
-var gap : float = 35.0 / 4
-
-var row1_x : float = gap
-var row2_x : float = gap*2 + 150
-var row3_x : float = gap*3 + 150*2
-
-var col1_y : float = gap
+var gap : float
 
 func show_deck() -> void:
 	deck_card_control.size.y = (current_deck_row_count + 1) * gap + current_deck_row_count * 250 
 	var show_array : Array[Card] = id_sort_card(deck)
 	var current_count : int = 0
-	for col in current_deck_row_count:
+	for col in range(current_deck_row_count):
 		for row in range(0,3):
 			if show_array[current_count]:
-				show_array[current_count].position#TODO
+				if show_array[current_count].parent:
+					show_array[current_count].parent.remove_child(show_array[current_count])
+				deck_card_control.add_child(show_array[current_count])
+				show_array[current_count].initialize(deck_card_control)
+				show_array[current_count].position.x = gap*(row+1) + card_size.x*row
+				show_array[current_count].position.y = gap*(col+1) + card_size.y*col
 
 func id_sort_card(parameter : Array[Card]) -> Array[Card]:
 	var result : Array[Card] = []
-	#TODO
+	for current_count in whole_deck.size():
+		for card in parameter:
+			if card.id == current_count:
+				result.append(card)
 	return result
+#工具函数，用于按id排序牌堆
 
-#还没写完
+var current_new_card_id : int = -1
+#因为开头要+1，所以这里取-1，初始值就为0
+
+func get_id(parameter : Card) -> int:
+	#卡牌将要放入卡组和手牌时（即玩家将永久获得某张卡牌时），赋值id，以后取牌也是从id获取
+	current_new_card_id += 1
+	whole_deck.append(parameter)
+	return current_new_card_id
+
+func get_card(id : int) -> Card:
+	return whole_deck[id]
+
+func destroy_card(id : int) -> void:
+	current_new_card_id -= 1
+	whole_deck.remove_at(id)
+
+func add_to_trash_deck(parameter : Card) -> void:
+	if parameter.parent:
+		parameter.parent.remove_child(parameter)
+	trash_deck.append(parameter)
+
+func draw_card_from_deck(count : int = 0) -> void:
+	if deck.size() == 0:
+		refresh_deck()
+	var target_card : Card = deck[count]
+	
+	CalenderGlue.put_card_into_hand(target_card)
+
+func refresh_deck() -> void:
+	var deck_size = trash_deck.size()
+	for i in deck_size:
+		var random_count = randi_range(0,trash_deck.size())
+		deck.append(trash_deck[random_count])
+		trash_deck.remove_at(random_count)

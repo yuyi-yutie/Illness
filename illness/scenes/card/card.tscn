@@ -10,6 +10,7 @@ script = ExtResource("1_imta7")
 name_label = NodePath("NamePanel/NameLabel")
 time_label = NodePath("TimePanel/TimeLabel")
 card_picture = NodePath("CardPicture")
+metadata/_custom_type_script = "uid://bsp44wgqxk8n4"
 
 [node name="NamePanel" type="Panel" parent="."]
 layout_mode = 0

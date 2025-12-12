@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://csxfeql8s4040"]
+[gd_scene load_steps=7 format=3 uid="uid://csxfeql8s4040"]
 
 [ext_resource type="Script" uid="uid://bcn22xiiqwgnw" path="res://scripts/play_scene/play_scene.gd" id="1_0ihop"]
 [ext_resource type="PackedScene" uid="uid://b76r0tvur6ts8" path="res://scenes/play_scene/calender.tscn" id="3_x7p53"]
 [ext_resource type="PackedScene" uid="uid://510js86b2oua" path="res://scenes/play_scene/card_detail.tscn" id="4_goj7n"]
 [ext_resource type="PackedScene" uid="uid://c5nhp08bw06nm" path="res://scenes/play_scene/end_and_execute.tscn" id="4_x7p53"]
+[ext_resource type="Script" uid="uid://bmebcfgjseov7" path="res://test/test_add_card_to_hand.gd" id="5_03pml"]
+[ext_resource type="Script" uid="uid://boxxenyp8cgk" path="res://test/test_draw_card.gd" id="6_vw7vn"]
 
 [node name="PlayScene" type="Control"]
 layout_mode = 3
@@ -23,3 +25,23 @@ layout_mode = 1
 
 [node name="EndAndExecute" parent="." instance=ExtResource("4_x7p53")]
 layout_mode = 1
+
+[node name="TestAddCardToHand" type="Button" parent="."]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+focus_mode = 0
+text = "+手牌"
+script = ExtResource("5_03pml")
+
+[node name="TestDrawCard" type="Button" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 400.0
+offset_bottom = 100.0
+focus_mode = 0
+text = "抽牌"
+script = ExtResource("6_vw7vn")
+
+[connection signal="button_down" from="TestAddCardToHand" to="TestAddCardToHand" method="_on_button_down"]
+[connection signal="button_down" from="TestDrawCard" to="TestDrawCard" method="_on_button_down"]

@@ -13,3 +13,4 @@ func initialize() -> void:
 	for child in get_children():
 		if child.has_method("initialize"):
 			child.initialize(self)
+ 

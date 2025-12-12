@@ -38,8 +38,13 @@ enum TimeType {
 
 @export var card_picture : TextureRect
 
+var parent : Control
+#这里的parent会有多种可能性，手牌面板，牌堆弃牌堆面板，商店面板
+
 #测试
-func initialize(_parameter) -> void:
+func initialize(parameter : Control) -> void:
+	parent = parameter
+	id = DeckGlue.get_id(self)
 	_name = _name
 	time = time
 
@@ -51,3 +56,9 @@ func _on_mouse_exited() -> void:
 	if CardGlue.current_hover_card == self:
 		CardGlue.current_hover_card = null
 #endregion
+
+
+#测试
+func click() -> void:
+	CalenderGlue.put_card_outof_hand(self)
+	DeckGlue.add_to_trash_deck(self)

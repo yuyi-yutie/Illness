@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b76r0tvur6ts8"]
+[gd_scene load_steps=6 format=3 uid="uid://b76r0tvur6ts8"]
 
 [ext_resource type="Script" uid="uid://16i04oith8r2" path="res://scripts/play_scene/calender_panel/calender_panel.gd" id="1_swrtb"]
 [ext_resource type="Script" uid="uid://c2fovslvlxy0s" path="res://scripts/play_scene/calender_panel/calender_face.gd" id="2_qgaqk"]
 [ext_resource type="Script" uid="uid://v1171det0k1o" path="res://scripts/play_scene/calender_panel/medical_and_activity_panel.gd" id="3_ysl3n"]
 [ext_resource type="Script" uid="uid://ktlwwglr32gd" path="res://scripts/play_scene/calender_panel/schedule_box.gd" id="4_j5sjl"]
-[ext_resource type="PackedScene" uid="uid://cqr2tljf25i0j" path="res://scenes/card/card.tscn" id="5_2wdx8"]
 [ext_resource type="Script" uid="uid://0iwvhwnc5r1p" path="res://scripts/play_scene/calender_panel/hand_panel.gd" id="5_4wyb7"]
 
 [node name="Calender" type="Control"]
@@ -203,48 +202,3 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 script = ExtResource("5_4wyb7")
-
-[node name="Card1" parent="CalenderPanel/HandPanel" instance=ExtResource("5_2wdx8")]
-layout_mode = 0
-time_type = 1
-_name = "医疗卡1"
-time = 1
-card_detail = "医疗卡111"
-
-[node name="Card2" parent="CalenderPanel/HandPanel" instance=ExtResource("5_2wdx8")]
-layout_mode = 0
-offset_left = 150.0
-offset_right = 300.0
-card_type = 1
-time_type = 1
-_name = "活动卡2"
-time = 2
-card_detail = "活动卡222"
-
-[node name="Card3" parent="CalenderPanel/HandPanel" instance=ExtResource("5_2wdx8")]
-layout_mode = 0
-offset_left = 300.0
-offset_right = 450.0
-time_type = 1
-_name = "医疗卡3"
-time = 3
-card_detail = "医疗卡333"
-
-[node name="Card4" parent="CalenderPanel/HandPanel" instance=ExtResource("5_2wdx8")]
-layout_mode = 0
-offset_left = 450.0
-offset_right = 600.0
-card_type = 1
-time_type = 1
-_name = "活动卡4"
-time = 4
-card_detail = "活动卡444"
-
-[node name="Card5" parent="CalenderPanel/HandPanel" instance=ExtResource("5_2wdx8")]
-layout_mode = 0
-offset_left = 600.0
-offset_right = 750.0
-time_type = 1
-_name = "医疗卡5"
-time = 5
-card_detail = "医疗卡555"
