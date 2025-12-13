@@ -6,6 +6,7 @@
 [node name="Card" type="Panel" node_paths=PackedStringArray("name_label", "time_label", "card_picture")]
 offset_right = 150.0
 offset_bottom = 250.0
+mouse_filter = 1
 script = ExtResource("1_imta7")
 name_label = NodePath("NamePanel/NameLabel")
 time_label = NodePath("TimePanel/TimeLabel")

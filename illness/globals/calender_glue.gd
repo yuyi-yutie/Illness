@@ -18,6 +18,7 @@ var hand_card_array : Array[Card]
 func put_card_into_hand(parameter : Card) -> void:
 	if parameter.parent:
 		parameter.parent.remove_child(parameter)
+		parameter.parent = null
 	hand_panel.add_child(parameter)
 	parameter.initialize(hand_panel)
 	hand_card_array.append(parameter)
@@ -26,6 +27,7 @@ func put_card_into_hand(parameter : Card) -> void:
 func put_card_outof_hand(parameter : Card) -> void:
 	if parameter.parent:
 		parameter.parent.remove_child(parameter)
+		parameter.parent = null
 	parameter.position += Vector2(1000,1000)
 	#测试
 
@@ -40,5 +42,5 @@ func refresh_hand_position() -> void:
 	else:
 		for hand_card in hand_card_array:
 			hand_card.position.y = 0
-			hand_card.position.x = current_count * (hand_panel.x - card_size.x) / hand_card_count
+			hand_card.position.x = current_count * (hand_panel.size.x-card_size.x) / (hand_card_count-1) 
 			current_count += 1

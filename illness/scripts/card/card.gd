@@ -44,7 +44,7 @@ var parent : Control
 #测试
 func initialize(parameter : Control) -> void:
 	parent = parameter
-	id = DeckGlue.get_id(self)
+	#id = DeckGlue.get_id(self)
 	_name = _name
 	time = time
 
@@ -60,5 +60,9 @@ func _on_mouse_exited() -> void:
 
 #测试
 func click() -> void:
-	CalenderGlue.put_card_outof_hand(self)
-	DeckGlue.add_to_trash_deck(self)
+	if parent is HandPanel:
+		#这里在加入商店之后要改
+		CalenderGlue.put_card_outof_hand(self)
+		DeckGlue.add_to_trash_deck(self)
+		CalenderGlue.hand_card_array.erase(self)
+		CalenderGlue.refresh_hand_position()
