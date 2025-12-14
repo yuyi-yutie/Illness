@@ -1,0 +1,182 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfo7lbrnne72y"]
+
+[ext_resource type="Script" uid="uid://dnrym7rkhaq8i" path="res://scripts/play_scene/small_calender/small_calender.gd" id="1_ie5fp"]
+
+[node name="SmallCalender" type="Control" node_paths=PackedStringArray("date_label", "month_progress_array")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ie5fp")
+date_label = NodePath("SmallCalenderPanel/DateLabelPanel/DateLabel")
+month_progress_array = [NodePath("SmallCalenderPanel/MonthProgress1"), NodePath("SmallCalenderPanel/MonthProgress2"), NodePath("SmallCalenderPanel/MonthProgress3"), NodePath("SmallCalenderPanel/MonthProgress4"), NodePath("SmallCalenderPanel/MonthProgress5"), NodePath("SmallCalenderPanel/MonthProgress6"), NodePath("SmallCalenderPanel/MonthProgress7"), NodePath("SmallCalenderPanel/MonthProgress8"), NodePath("SmallCalenderPanel/MonthProgress9"), NodePath("SmallCalenderPanel/MonthProgress10"), NodePath("SmallCalenderPanel/MonthProgress11"), NodePath("SmallCalenderPanel/MonthProgress12")]
+
+[node name="SmallCalenderPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 485.0
+offset_bottom = 186.25
+
+[node name="DateLabelPanel" type="Panel" parent="SmallCalenderPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 475.0
+offset_bottom = 60.25
+
+[node name="DateLabel" type="Label" parent="SmallCalenderPanel/DateLabelPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "xxxx年xx月xx周"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MonthProgress1" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -116.0
+offset_right = 58.0
+offset_bottom = -68.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress2" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 93.0
+offset_top = -116.0
+offset_right = 141.0
+offset_bottom = -68.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress3" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 176.0
+offset_top = -116.0
+offset_right = 224.0
+offset_bottom = -68.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress4" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 261.0
+offset_top = -116.0
+offset_right = 309.0
+offset_bottom = -68.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress5" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 344.0
+offset_top = -116.0
+offset_right = 392.0
+offset_bottom = -68.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress6" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 427.0
+offset_top = -116.0
+offset_right = 475.0
+offset_bottom = -68.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress7" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -58.0
+offset_right = 58.0
+offset_bottom = -10.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress8" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 93.0
+offset_top = -58.0
+offset_right = 141.0
+offset_bottom = -10.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress9" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 176.0
+offset_top = -58.0
+offset_right = 224.0
+offset_bottom = -10.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress10" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 261.0
+offset_top = -58.0
+offset_right = 309.0
+offset_bottom = -10.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress11" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 344.0
+offset_top = -58.0
+offset_right = 392.0
+offset_bottom = -10.0
+grow_vertical = 0
+show_percentage = false
+
+[node name="MonthProgress12" type="ProgressBar" parent="SmallCalenderPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 427.0
+offset_top = -58.0
+offset_right = 475.0
+offset_bottom = -10.0
+grow_vertical = 0
+show_percentage = false

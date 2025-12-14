@@ -43,7 +43,7 @@ func show_deck(target_deck : Array[Card]) -> void:
 	var show_array : Array[Card] = id_sort_card(target_deck)
 	var show_size : int = target_deck.size()
 	for current_count in range(show_size):
-		var row : int = floori(current_count / 3)
+		var row : int = floori(current_count / 3.0)
 		var col : int = current_count % 3
 		if show_array[current_count].parent:
 			show_array[current_count].parent.remove_child(show_array[current_count])
