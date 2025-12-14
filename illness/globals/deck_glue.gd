@@ -105,13 +105,30 @@ func get_card(id : int) -> Card:
 func destroy_card(id : int) -> void:
 	current_new_card_id -= 1
 	whole_deck.remove_at(id)
+	
+	for child in CalenderGlue.hand_panel.get_children():
+		if child is Card:
+			if child.id == id:
+				child.parent.remove_child(child)
+				child.parent = null
+				CalenderGlue.hand_card_array.erase(child)
+				child.queue_free()
+	refresh_id()
+	CalenderGlue.refresh_hand_position()
 
+func refresh_id() -> void:
+	for current_count in range(whole_deck.size()):
+		whole_deck[current_count].id = current_count
+
+#只涉及弃牌堆逻辑的弃牌函数
 func add_to_trash_deck(parameter : Card) -> void:
 	if parameter.parent:
 		parameter.parent.remove_child(parameter)
 		parameter.parent = null
 	trash_deck.append(parameter)
 
+
+#抽牌函数
 func draw_card_from_deck(count : int = 0) -> void:
 	if deck.size() == 0:
 		refresh_deck()

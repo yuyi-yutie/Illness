@@ -61,8 +61,16 @@ func _on_mouse_exited() -> void:
 #测试
 func click() -> void:
 	if parent is HandPanel:
-		#这里在加入商店之后要改
-		CalenderGlue.put_card_outof_hand(self)
-		DeckGlue.add_to_trash_deck(self)
-		CalenderGlue.hand_card_array.erase(self)
-		CalenderGlue.refresh_hand_position()
+		if !ShopGlue.in_destroy_type:
+			CalenderGlue.put_card_outof_hand(self)
+			DeckGlue.add_to_trash_deck(self)
+			CalenderGlue.hand_card_array.erase(self)
+			CalenderGlue.refresh_hand_position()
+			execute()
+		else:
+			ShopGlue.in_destroy_type = false
+			DeckGlue.destroy_card(id)
+
+func execute() -> void:
+	#这里写卡牌的效果
+	pass

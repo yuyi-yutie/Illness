@@ -1,0 +1,151 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmh7ju3vuexap"]
+
+[ext_resource type="Script" uid="uid://dmogl1s8wg3ek" path="res://scripts/play_scene/shop/shop.gd" id="1_eu2di"]
+[ext_resource type="Script" uid="uid://bycdjgwpjk7d5" path="res://scripts/play_scene/shop/shop_card_slot.gd" id="1_osvcl"]
+[ext_resource type="Script" uid="uid://bftuc8r5gns8p" path="res://scripts/play_scene/shop/shop_panel.gd" id="2_4dpxf"]
+[ext_resource type="Script" uid="uid://c6tkoibw1j7fc" path="res://scripts/play_scene/shop/shop_card_panel.gd" id="3_p0dyc"]
+
+[node name="Shop" type="Control" node_paths=PackedStringArray("card_slots")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_eu2di")
+card_slots = [NodePath("ShopPanel/ShopCardPanel1/ShopCardSlot1"), NodePath("ShopPanel/ShopCardPanel2/ShopCardSlot2"), NodePath("ShopPanel/ShopCardPanel3/ShopCardSlot3"), NodePath("ShopPanel/ShopCardPanel4/ShopCardSlot4"), NodePath("ShopPanel/ShopCardPanel5/ShopCardSlot5"), NodePath("ShopPanel/ShopCardPanel6/ShopCardSlot6")]
+
+[node name="ShopPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -893.75
+offset_right = 485.0
+offset_bottom = -250.0
+grow_vertical = 0
+script = ExtResource("2_4dpxf")
+
+[node name="ShopCardPanel1" type="Panel" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 8.75
+offset_top = 8.75
+offset_right = 158.75
+offset_bottom = 258.75
+script = ExtResource("3_p0dyc")
+
+[node name="ShopCardSlot1" type="Control" parent="ShopPanel/ShopCardPanel1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_osvcl")
+
+[node name="ShopCardPanel2" type="Panel" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 167.5
+offset_top = 8.75
+offset_right = 317.5
+offset_bottom = 258.75
+script = ExtResource("3_p0dyc")
+
+[node name="ShopCardSlot2" type="Control" parent="ShopPanel/ShopCardPanel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_osvcl")
+
+[node name="ShopCardPanel3" type="Panel" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 326.25
+offset_top = 8.75
+offset_right = 476.25
+offset_bottom = 258.75
+script = ExtResource("3_p0dyc")
+
+[node name="ShopCardSlot3" type="Control" parent="ShopPanel/ShopCardPanel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_osvcl")
+
+[node name="ShopCardPanel4" type="Panel" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 8.75
+offset_top = 267.5
+offset_right = 158.75
+offset_bottom = 517.5
+script = ExtResource("3_p0dyc")
+
+[node name="ShopCardSlot4" type="Control" parent="ShopPanel/ShopCardPanel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_osvcl")
+
+[node name="ShopCardPanel5" type="Panel" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 167.5
+offset_top = 267.5
+offset_right = 317.5
+offset_bottom = 517.5
+script = ExtResource("3_p0dyc")
+
+[node name="ShopCardSlot5" type="Control" parent="ShopPanel/ShopCardPanel5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_osvcl")
+
+[node name="ShopCardPanel6" type="Panel" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 326.25
+offset_top = 267.5
+offset_right = 476.25
+offset_bottom = 517.5
+script = ExtResource("3_p0dyc")
+
+[node name="ShopCardSlot6" type="Control" parent="ShopPanel/ShopCardPanel6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_osvcl")
+
+[node name="ShopDestroyCard" type="Button" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 8.75
+offset_top = 526.25
+offset_right = 476.25
+offset_bottom = 576.25
+focus_mode = 0
+text = "销毁一张手牌(暂无消耗)"
+
+[node name="ShopChangeCard" type="Button" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 8.75
+offset_top = 585.0
+offset_right = 476.25
+offset_bottom = 635.0
+focus_mode = 0
+text = "换一批(暂无消耗)"
+
+[connection signal="button_down" from="ShopPanel/ShopDestroyCard" to="." method="_on_shop_destroy_card_button_down"]
+[connection signal="button_down" from="ShopPanel/ShopChangeCard" to="." method="_on_shop_change_card_button_down"]

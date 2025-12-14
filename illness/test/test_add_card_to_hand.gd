@@ -7,3 +7,4 @@ func _on_button_down() -> void:
 	CalenderGlue.put_card_into_hand(new_card)
 	new_card.id = DeckGlue.get_id(new_card)
 	new_card.time = randi_range(0,7)
+	new_card.card_detail = str(randf())
