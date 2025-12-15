@@ -79,6 +79,7 @@ func id_sort_card(target_deck : Array[Card]) -> Array[Card]:
 
 func end_show() -> void:
 	deck_detail_panel.visible = false
+	
 	deck_card_box.custom_minimum_size.y = 0
 	deck_card_box.size.y = 0
 	for deck_card in deck_card_control.get_children():

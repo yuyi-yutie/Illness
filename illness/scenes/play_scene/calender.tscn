@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b76r0tvur6ts8"]
+[gd_scene load_steps=7 format=3 uid="uid://b76r0tvur6ts8"]
 
 [ext_resource type="Script" uid="uid://16i04oith8r2" path="res://scripts/play_scene/calender_panel/calender_panel.gd" id="1_swrtb"]
 [ext_resource type="Script" uid="uid://c2fovslvlxy0s" path="res://scripts/play_scene/calender_panel/calender_face.gd" id="2_qgaqk"]
 [ext_resource type="Script" uid="uid://v1171det0k1o" path="res://scripts/play_scene/calender_panel/medical_and_activity_panel.gd" id="3_ysl3n"]
 [ext_resource type="Script" uid="uid://ktlwwglr32gd" path="res://scripts/play_scene/calender_panel/schedule_box.gd" id="4_j5sjl"]
 [ext_resource type="Script" uid="uid://0iwvhwnc5r1p" path="res://scripts/play_scene/calender_panel/hand_panel.gd" id="5_4wyb7"]
+[ext_resource type="Texture2D" uid="uid://b252q7ra1g10t" path="res://assects/box_100x100.png" id="5_vav4e"]
 
 [node name="Calender" type="Control"]
 layout_mode = 3
@@ -98,7 +99,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_j5sjl")
 
-[node name="ABSceduleBox" type="Control" parent="CalenderPanel/MedicalPanel"]
+[node name="ABSceduleBox" type="Control" parent="CalenderPanel/MedicalPanel" node_paths=PackedStringArray("ready_rect")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,6 +109,15 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_j5sjl")
 sb_or_ab = 1
+ready_rect = NodePath("ScheduleReadyMedical")
+
+[node name="ScheduleReadyMedical" type="TextureRect" parent="CalenderPanel/MedicalPanel/ABSceduleBox"]
+visible = false
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("5_vav4e")
+expand_mode = 1
 
 [node name="ActivityPanel" type="Control" parent="CalenderPanel"]
 anchors_preset = 0
@@ -177,7 +187,7 @@ mouse_filter = 2
 script = ExtResource("4_j5sjl")
 type = 1
 
-[node name="ABSceduleBox" type="Control" parent="CalenderPanel/ActivityPanel"]
+[node name="ABSceduleBox" type="Control" parent="CalenderPanel/ActivityPanel" node_paths=PackedStringArray("ready_rect")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -188,6 +198,15 @@ mouse_filter = 2
 script = ExtResource("4_j5sjl")
 type = 1
 sb_or_ab = 1
+ready_rect = NodePath("ScheduleReadyActivity")
+
+[node name="ScheduleReadyActivity" type="TextureRect" parent="CalenderPanel/ActivityPanel/ABSceduleBox"]
+visible = false
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("5_vav4e")
+stretch_mode = 1
 
 [node name="HandPanel" type="Panel" parent="CalenderPanel"]
 layout_mode = 1

@@ -18,7 +18,7 @@ var week : int = 1:
 			month += 1
 			week = 1
 		date_label_text = str(year) + "年" + str(month) + "月" + str(week) + "周"
-		month_progress_array[month-1].value = week * 25
+		month_progress_array[month-1].value = week
 
 var date_label : Label
 var month_progress_array : Array[ProgressBar]

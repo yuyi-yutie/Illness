@@ -51,10 +51,15 @@ func initialize(parameter : Control) -> void:
 #region 鼠标检测
 func _on_mouse_entered() -> void:
 	CardGlue.current_hover_card = self
+	if parent is HandPanel:
+		CalenderGlue.hover_ready_to_queue = self
 
 func _on_mouse_exited() -> void:
 	if CardGlue.current_hover_card == self:
 		CardGlue.current_hover_card = null
+	if parent is HandPanel:
+		if CalenderGlue.hover_ready_to_queue == self:
+			CalenderGlue.hover_ready_to_queue = null
 #endregion
 
 

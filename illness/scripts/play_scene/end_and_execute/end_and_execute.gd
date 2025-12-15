@@ -11,10 +11,12 @@ func initialize(parameter : PlayScene) -> void:
 	DeckGlue.deck_card_control = deck_card_control
 	DeckGlue.deck_card_box = deck_card_box
 	DeckGlue.deck_detail_panel = deck_detail_panel
+	deck_detail_panel.visible = false
 
 @export var deck_card_control : Control
 @export var deck_card_box : VBoxContainer
 @export var deck_detail_panel : Panel
+@export var execute_label : Label
 
 var mouse_in_deck : bool = false:
 	set(value):
@@ -68,8 +70,15 @@ func check_if_end_show() -> void:
 
 func _on_execute_button_mouse_entered() -> void:
 	check_if_end_show()
+	execute_label.text = "执行按钮悬浮文本"
 	deck_detail_panel.visible = true
 
 #鼠标水平向左离开牌堆时，不会触发检查结束，于是有这个补丁
 func _on_bd_mouse_entered() -> void:
 	check_if_end_show()
+
+
+func _on_execute_button_mouse_exited() -> void:
+	execute_label.text = ""
+	check_if_end_show()
+	deck_detail_panel.visible = false

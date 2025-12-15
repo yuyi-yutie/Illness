@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crcjg6k01ig5j" path="res://scripts/play_scene/end_and_execute/end_and_execute.gd" id="1_vvrss"]
 
-[node name="EndAndExecute" type="Control" node_paths=PackedStringArray("deck_card_control", "deck_card_box", "deck_detail_panel")]
+[node name="EndAndExecute" type="Control" node_paths=PackedStringArray("deck_card_control", "deck_card_box", "deck_detail_panel", "execute_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +14,7 @@ script = ExtResource("1_vvrss")
 deck_card_control = NodePath("DeckDetailPanel/DeckScrollerContainer/DeckVBoxContainer/DeckCardControl")
 deck_card_box = NodePath("DeckDetailPanel/DeckScrollerContainer/DeckVBoxContainer")
 deck_detail_panel = NodePath("DeckDetailPanel")
+execute_label = NodePath("DeckDetailPanel/ExecuteLabel")
 
 [node name="EndPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -89,7 +90,6 @@ focus_mode = 0
 text = "执行"
 
 [node name="DeckDetailPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -118,6 +118,16 @@ custom_minimum_size = Vector2(485, 0)
 layout_mode = 2
 mouse_filter = 1
 
+[node name="ExecuteLabel" type="Label" parent="DeckDetailPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="bd" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -132,6 +142,7 @@ mouse_filter = 1
 [connection signal="mouse_entered" from="EndPanel/TrashDeckPanel" to="." method="_on_trash_deck_panel_mouse_entered"]
 [connection signal="mouse_exited" from="EndPanel/TrashDeckPanel" to="." method="_on_trash_deck_panel_mouse_exited"]
 [connection signal="mouse_entered" from="EndPanel/ExecuteButton" to="." method="_on_execute_button_mouse_entered"]
+[connection signal="mouse_exited" from="EndPanel/ExecuteButton" to="." method="_on_execute_button_mouse_exited"]
 [connection signal="mouse_entered" from="DeckDetailPanel" to="." method="_on_deck_detail_panel_mouse_entered"]
 [connection signal="mouse_exited" from="DeckDetailPanel" to="." method="_on_deck_detail_panel_mouse_exited"]
 [connection signal="mouse_entered" from="bd" to="." method="_on_bd_mouse_entered"]

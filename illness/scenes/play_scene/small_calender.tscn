@@ -47,6 +47,7 @@ offset_top = -116.0
 offset_right = 58.0
 offset_bottom = -68.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress2" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -59,6 +60,7 @@ offset_top = -116.0
 offset_right = 141.0
 offset_bottom = -68.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress3" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -71,6 +73,7 @@ offset_top = -116.0
 offset_right = 224.0
 offset_bottom = -68.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress4" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -83,6 +86,7 @@ offset_top = -116.0
 offset_right = 309.0
 offset_bottom = -68.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress5" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -95,6 +99,7 @@ offset_top = -116.0
 offset_right = 392.0
 offset_bottom = -68.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress6" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -107,6 +112,7 @@ offset_top = -116.0
 offset_right = 475.0
 offset_bottom = -68.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress7" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -119,6 +125,7 @@ offset_top = -58.0
 offset_right = 58.0
 offset_bottom = -10.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress8" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -131,6 +138,7 @@ offset_top = -58.0
 offset_right = 141.0
 offset_bottom = -10.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress9" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -143,6 +151,7 @@ offset_top = -58.0
 offset_right = 224.0
 offset_bottom = -10.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress10" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -155,6 +164,7 @@ offset_top = -58.0
 offset_right = 309.0
 offset_bottom = -10.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress11" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -167,6 +177,7 @@ offset_top = -58.0
 offset_right = 392.0
 offset_bottom = -10.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false
 
 [node name="MonthProgress12" type="ProgressBar" parent="SmallCalenderPanel"]
@@ -179,4 +190,5 @@ offset_top = -58.0
 offset_right = 475.0
 offset_bottom = -10.0
 grow_vertical = 0
+max_value = 4.0
 show_percentage = false

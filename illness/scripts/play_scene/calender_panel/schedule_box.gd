@@ -14,6 +14,7 @@ enum SBOrAB {
 
 @export var type : MedicalOrActivity
 @export var sb_or_ab : SBOrAB
+@export var ready_rect : TextureRect
 
 var parent : MedicalAndActivityPanel
 
@@ -41,5 +42,9 @@ func ab_initialize() -> void:
 	match type:
 		MedicalOrActivity.Medical:
 			CalenderGlue.ab_medical_schedule_box_position = self.global_position
+			CalenderGlue.schedule_ready_rect_medical = ready_rect
+			ready_rect.visible = false
 		MedicalOrActivity.Activity:
 			CalenderGlue.ab_activity_schedule_box_position = self.global_position
+			CalenderGlue.schedule_ready_rect_activity = ready_rect
+			ready_rect.visible = false
