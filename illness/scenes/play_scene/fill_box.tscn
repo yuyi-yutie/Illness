@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://2vtxtkabw0ds"]
+
+[ext_resource type="Texture2D" uid="uid://b3xh8fqcdgr3n" path="res://assects/fill_box.png" id="1_oe7qm"]
+[ext_resource type="Script" uid="uid://doffieqt28kx6" path="res://scripts/play_scene/calender_panel/fill_box.gd" id="2_j88ml"]
+
+[node name="FillBox" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_oe7qm")
+script = ExtResource("2_j88ml")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

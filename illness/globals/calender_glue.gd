@@ -4,12 +4,11 @@ extends Node
 
 var card_size : Vector2 = Vector2(150 , 250)
 
-var medical_schedule_box_position : Vector2
-var activity_schedule_box_position : Vector2
+var medical_schedule_box : ScheduleBox
+var activity_schedule_box : ScheduleBox
 
-var ab_medical_schedule_box_position : Vector2
-var ab_activity_schedule_box_position : Vector2
-
+var ab_medical_schedule_box : ScheduleBox
+var ab_activity_schedule_box : ScheduleBox
 
 
 var hand_panel : Panel
@@ -81,3 +80,61 @@ var schedule_ready_rect_activity : TextureRect
 
 var gap : int = 25
 var grid_size : Vector2 = Vector2(100,100)
+
+var card_in_queue_medical : Array[Card] = []
+var card_in_queue_activity : Array[Card] = []
+
+var box_in_queue_medical : Array[FillBox] = []
+var box_in_queue_activity : Array[FillBox] = []
+
+const FILL_BOX = preload("uid://2vtxtkabw0ds")
+
+func add_card_in_queue(parameter : Card) -> void:
+	var fill_box : FillBox = FILL_BOX.instantiate()
+	match parameter.card_type:
+		Card.CardType.Medical:
+			card_in_queue_medical.append(parameter)
+			box_in_queue_medical.append(fill_box)
+			medical_schedule_box.add_child(fill_box)
+			fill_box.position.x = (gap + grid_size.x) * occupy_time_medical 
+			fill_box.size.x = parameter.time * grid_size.x + gap * (parameter.time-1) 
+			occupy_time_medical += parameter.time
+		Card.CardType.Activity:
+			card_in_queue_activity.append(parameter)
+			box_in_queue_activity.append(fill_box)
+			activity_schedule_box.add_child(fill_box)
+			fill_box.position.x = (gap + grid_size.x) * occupy_time_activity
+			fill_box.size.x = parameter.time * grid_size.x + gap * (parameter.time-1)
+			occupy_time_activity += parameter.time
+
+func return_card_to_hand_through_fillbox(parameter : FillBox) -> void:
+	var target : Card = null
+	var target_index : int = -1
+	if parameter in box_in_queue_medical:
+		target_index = box_in_queue_medical.find(parameter)
+		target = card_in_queue_medical[target_index]
+		occupy_time_medical -= target.time
+		box_in_queue_medical[target_index].get_parent().remove_child(box_in_queue_medical[target_index])
+		box_in_queue_medical[target_index].queue_free()
+		box_in_queue_medical.remove_at(target_index)
+		card_in_queue_medical.remove_at(target_index)
+		put_card_into_hand(target)
+		CardGlue.hover_fill_box = false
+	if parameter in box_in_queue_activity:
+		target_index = box_in_queue_activity.find(parameter)
+		target = card_in_queue_activity[target_index]
+		occupy_time_activity -= target.time
+		box_in_queue_activity[target_index].get_parent().remove_child(box_in_queue_activity[target_index])
+		box_in_queue_activity[target_index].queue_free()
+		box_in_queue_activity.remove_at(target_index)
+		card_in_queue_activity.remove_at(target_index)
+		put_card_into_hand(target)
+		CardGlue.hover_fill_box = false
+
+func get_hover_card_through_fillbox(parameter : FillBox) -> Card:
+	if parameter in box_in_queue_medical:
+		return card_in_queue_medical[box_in_queue_medical.find(parameter)]
+	if parameter in box_in_queue_activity:
+		return card_in_queue_activity[box_in_queue_activity.find(parameter)]
+	print("报错：队列中无选中FillBox对应卡牌")
+	return null

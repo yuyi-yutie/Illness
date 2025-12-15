@@ -65,17 +65,38 @@ func _on_mouse_exited() -> void:
 
 #测试
 func click() -> void:
+	#这里处理卡牌本身的位置和视觉效果
 	if parent is HandPanel:
 		if !ShopGlue.in_destroy_type:
+			
+			#用于检测是否可以放入
+			match card_type:
+				CardType.Medical:
+					if CalenderGlue.occupy_time_medical + time > 7:
+						return
+				CardType.Activity:
+					if CalenderGlue.occupy_time_activity + time > 7:
+						return
+			
+			
 			CalenderGlue.put_card_outof_hand(self)
+			
 			DeckGlue.add_to_trash_deck(self)
+			#后面写执行的时候要把这个改掉，在执行之后再放进弃牌堆
+			
 			CalenderGlue.hand_card_array.erase(self)
 			CalenderGlue.refresh_hand_position()
-			execute()
+			put_into_queue()
 		else:
 			ShopGlue.in_destroy_type = false
 			DeckGlue.destroy_card(id)
 
+func put_into_queue() -> void:
+	match time_type:
+		TimeType.RealTime:
+			execute()
+		TimeType.Schedule:
+			CalenderGlue.add_card_in_queue(self)
+
 func execute() -> void:
-	#这里写卡牌的效果
 	pass

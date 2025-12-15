@@ -26,3 +26,6 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("LeftClick"):
 			if current_hover_card:
 				current_hover_card.click()
+
+var hover_fill_box : bool = false
+#用于修复返回卡牌=点击卡牌的bug

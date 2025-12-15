@@ -14,7 +14,9 @@ enum SBOrAB {
 
 @export var type : MedicalOrActivity
 @export var sb_or_ab : SBOrAB
+
 @export var ready_rect : TextureRect
+#只有ab形态有ready_rect
 
 var parent : MedicalAndActivityPanel
 
@@ -33,18 +35,18 @@ func initialize(parameter : MedicalAndActivityPanel) -> void:
 func sb_initialize() -> void:
 	match type:
 		MedicalOrActivity.Medical:
-			CalenderGlue.medical_schedule_box_position = self.global_position
+			CalenderGlue.medical_schedule_box = self
 		MedicalOrActivity.Activity:
-			CalenderGlue.activity_schedule_box_position = self.global_position
+			CalenderGlue.activity_schedule_box = self
 
 #这是ab形态的初始化
 func ab_initialize() -> void:
 	match type:
 		MedicalOrActivity.Medical:
-			CalenderGlue.ab_medical_schedule_box_position = self.global_position
+			CalenderGlue.ab_medical_schedule_box = self
 			CalenderGlue.schedule_ready_rect_medical = ready_rect
 			ready_rect.visible = false
 		MedicalOrActivity.Activity:
-			CalenderGlue.ab_activity_schedule_box_position = self.global_position
+			CalenderGlue.ab_activity_schedule_box = self
 			CalenderGlue.schedule_ready_rect_activity = ready_rect
 			ready_rect.visible = false
