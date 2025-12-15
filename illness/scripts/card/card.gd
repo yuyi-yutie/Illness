@@ -81,7 +81,7 @@ func click() -> void:
 			
 			CalenderGlue.put_card_outof_hand(self)
 			
-			DeckGlue.add_to_trash_deck(self)
+			#DeckGlue.add_to_trash_deck(self)
 			#后面写执行的时候要把这个改掉，在执行之后再放进弃牌堆
 			
 			CalenderGlue.hand_card_array.erase(self)
@@ -99,4 +99,12 @@ func put_into_queue() -> void:
 			CalenderGlue.add_card_in_queue(self)
 
 func execute() -> void:
+	print("执行卡牌" + str(id))
+	
+	custom_execute()
+	
+	DeckGlue.add_to_trash_deck(self)
+
+func custom_execute() -> void:
+	#这里写卡牌的具体逻辑
 	pass

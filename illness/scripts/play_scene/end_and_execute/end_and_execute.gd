@@ -76,9 +76,18 @@ func _on_execute_button_mouse_entered() -> void:
 #鼠标水平向左离开牌堆时，不会触发检查结束，于是有这个补丁
 func _on_bd_mouse_entered() -> void:
 	check_if_end_show()
+	deck_detail_panel.visible = false
 
 
 func _on_execute_button_mouse_exited() -> void:
 	execute_label.text = ""
 	check_if_end_show()
 	deck_detail_panel.visible = false
+
+# 这是点击执行按钮执行的逻辑，后面要根据执行顺序改
+func _on_execute_button_button_down() -> void:
+	for child in CalenderGlue.card_in_queue_medical:
+		child.execute()
+	for child in CalenderGlue.card_in_queue_activity:
+		child.execute()
+	CalenderGlue.round_refresh()

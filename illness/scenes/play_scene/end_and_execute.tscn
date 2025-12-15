@@ -141,6 +141,7 @@ mouse_filter = 1
 [connection signal="mouse_exited" from="EndPanel/DeckPanel" to="." method="_on_deck_panel_mouse_exited"]
 [connection signal="mouse_entered" from="EndPanel/TrashDeckPanel" to="." method="_on_trash_deck_panel_mouse_entered"]
 [connection signal="mouse_exited" from="EndPanel/TrashDeckPanel" to="." method="_on_trash_deck_panel_mouse_exited"]
+[connection signal="button_down" from="EndPanel/ExecuteButton" to="." method="_on_execute_button_button_down"]
 [connection signal="mouse_entered" from="EndPanel/ExecuteButton" to="." method="_on_execute_button_mouse_entered"]
 [connection signal="mouse_exited" from="EndPanel/ExecuteButton" to="." method="_on_execute_button_mouse_exited"]
 [connection signal="mouse_entered" from="DeckDetailPanel" to="." method="_on_deck_detail_panel_mouse_entered"]

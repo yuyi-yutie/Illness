@@ -91,6 +91,7 @@ const FILL_BOX = preload("uid://2vtxtkabw0ds")
 
 func add_card_in_queue(parameter : Card) -> void:
 	var fill_box : FillBox = FILL_BOX.instantiate()
+	fill_box.occupy_time = parameter.time
 	match parameter.card_type:
 		Card.CardType.Medical:
 			card_in_queue_medical.append(parameter)
@@ -130,6 +131,7 @@ func return_card_to_hand_through_fillbox(parameter : FillBox) -> void:
 		card_in_queue_activity.remove_at(target_index)
 		put_card_into_hand(target)
 		CardGlue.hover_fill_box = false
+	refresh_fill_box()
 
 func get_hover_card_through_fillbox(parameter : FillBox) -> Card:
 	if parameter in box_in_queue_medical:
@@ -138,3 +140,30 @@ func get_hover_card_through_fillbox(parameter : FillBox) -> Card:
 		return card_in_queue_activity[box_in_queue_activity.find(parameter)]
 	print("报错：队列中无选中FillBox对应卡牌")
 	return null
+
+func refresh_fill_box() -> void:
+	var current_occupy_time : int = 0
+	for child in medical_schedule_box.get_children():
+		if child is FillBox:
+			child.position.x = (gap + grid_size.x) * current_occupy_time
+			current_occupy_time += child.occupy_time
+	current_occupy_time = 0
+	for child in activity_schedule_box.get_children():
+		if child is FillBox:
+			child.position.x = (gap + grid_size.x) * current_occupy_time
+			current_occupy_time += child.occupy_time
+
+
+# 把本脚本的所有变量数组变为初始化
+func round_refresh() -> void:
+	occupy_time_medical = 0
+	occupy_time_activity = 0
+	card_in_queue_medical.clear()
+	card_in_queue_activity.clear()
+	for child in box_in_queue_medical:
+		child.queue_free()
+	box_in_queue_medical.clear()
+	for child in box_in_queue_activity:
+		child.queue_free()
+	box_in_queue_activity.clear()
+	SmallCalenderGlue.week += 1

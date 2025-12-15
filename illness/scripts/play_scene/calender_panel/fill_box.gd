@@ -3,6 +3,8 @@ class_name FillBox
 
 var mouse_in : bool = false
 
+var occupy_time : int = 0
+
 func _on_mouse_entered() -> void:
 	mouse_in = true
 	CardGlue.hover_fill_box = true
