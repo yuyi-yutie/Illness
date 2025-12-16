@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://csxfeql8s4040"]
+[gd_scene load_steps=12 format=3 uid="uid://csxfeql8s4040"]
 
 [ext_resource type="Script" uid="uid://bcn22xiiqwgnw" path="res://scripts/play_scene/play_scene.gd" id="1_0ihop"]
 [ext_resource type="PackedScene" uid="uid://b76r0tvur6ts8" path="res://scenes/play_scene/calender.tscn" id="3_x7p53"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://boxxenyp8cgk" path="res://test/test_draw_card.gd" id="6_vw7vn"]
 [ext_resource type="PackedScene" uid="uid://b63rspcoq8yg2" path="res://scenes/play_scene/player_info.tscn" id="7_ex3eb"]
 [ext_resource type="Script" uid="uid://nrp86vy616cy" path="res://test/cmd.gd" id="8_ejibu"]
-[ext_resource type="Script" uid="uid://j1uaclgqfcwf" path="res://test/test_add_week.gd" id="9_i13pd"]
 [ext_resource type="Script" uid="uid://cex3mfa8ntnex" path="res://test/test_add_buff.gd" id="11_x3hcj"]
 
 [node name="PlayScene" type="Control"]
@@ -41,19 +40,22 @@ layout_mode = 1
 [node name="PlayerInfo" parent="." instance=ExtResource("7_ex3eb")]
 layout_mode = 1
 
-[node name="CMD" type="Panel" parent="."]
+[node name="CMD" type="Panel" parent="." node_paths=PackedStringArray("cmd_text", "cmd_edit")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -400.0
 offset_right = 400.0
-offset_bottom = 200.0
+offset_bottom = 300.0
 grow_horizontal = 2
 mouse_filter = 1
 script = ExtResource("8_ejibu")
+cmd_text = NodePath("CMDText")
+cmd_edit = NodePath("CMDEdit")
 
 [node name="TestAddCardToHand" type="Button" parent="CMD"]
+visible = false
 layout_mode = 0
 offset_left = 50.0
 offset_top = 50.0
@@ -64,6 +66,7 @@ text = "+手牌"
 script = ExtResource("5_03pml")
 
 [node name="TestDrawCard" type="Button" parent="CMD"]
+visible = false
 layout_mode = 0
 offset_left = 200.0
 offset_top = 50.0
@@ -74,6 +77,7 @@ text = "抽牌"
 script = ExtResource("6_vw7vn")
 
 [node name="TestAddVirus" type="Button" parent="CMD"]
+visible = false
 layout_mode = 0
 offset_left = 350.0
 offset_top = 50.0
@@ -82,17 +86,8 @@ offset_bottom = 150.0
 focus_mode = 0
 text = "+病毒"
 
-[node name="TestAddWeek" type="Button" parent="CMD"]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 50.0
-offset_right = 600.0
-offset_bottom = 150.0
-focus_mode = 0
-text = "+周数"
-script = ExtResource("9_i13pd")
-
 [node name="TestAddBuff" type="Button" parent="CMD"]
+visible = false
 layout_mode = 0
 offset_left = 650.0
 offset_top = 50.0
@@ -102,9 +97,24 @@ focus_mode = 0
 text = "+BUFF"
 script = ExtResource("11_x3hcj")
 
+[node name="CMDText" type="RichTextLabel" parent="CMD"]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 250.0
+focus_mode = 0
+scroll_following = true
+
+[node name="CMDEdit" type="LineEdit" parent="CMD"]
+layout_mode = 0
+offset_top = 250.0
+offset_right = 800.0
+offset_bottom = 300.0
+placeholder_text = "type -h for help"
+keep_editing_on_text_submit = true
+select_all_on_focus = true
+
 [connection signal="mouse_entered" from="CMD" to="CMD" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CMD" to="CMD" method="_on_mouse_exited"]
 [connection signal="button_down" from="CMD/TestAddCardToHand" to="CMD/TestAddCardToHand" method="_on_button_down"]
 [connection signal="button_down" from="CMD/TestDrawCard" to="CMD/TestDrawCard" method="_on_button_down"]
-[connection signal="button_down" from="CMD/TestAddWeek" to="CMD/TestAddWeek" method="_on_button_down"]
 [connection signal="button_down" from="CMD/TestAddBuff" to="CMD/TestAddBuff" method="_on_button_down"]
