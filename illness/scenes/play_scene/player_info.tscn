@@ -1,0 +1,163 @@
+[gd_scene load_steps=3 format=3 uid="uid://b63rspcoq8yg2"]
+
+[ext_resource type="Script" uid="uid://caln1udvhlkjw" path="res://scripts/play_scene/player_info/player_info.gd" id="1_jgsrh"]
+[ext_resource type="Script" uid="uid://crcs2gk7npb03" path="res://scripts/play_scene/player_info/buff_box.gd" id="2_er1v2"]
+
+[node name="PlayerInfo" type="Control" node_paths=PackedStringArray("buff_detail_panel", "buff_detail_label", "player_money_label", "player_work_label", "player_emotion_progress", "buff_box")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jgsrh")
+buff_detail_panel = NodePath("InfoBuffDetailPanel")
+buff_detail_label = NodePath("InfoBuffDetailPanel/DetailBuffLabel")
+player_money_label = NodePath("PlayerInfoPanel/MoneyPanel/MonryCountLabel")
+player_work_label = NodePath("PlayerInfoPanel/WorkPanel/WorkCountLabel")
+player_emotion_progress = NodePath("PlayerInfoPanel/EmotionPanel/EmotionProgress")
+buff_box = NodePath("PlayerInfoPanel/BuffPanel/BuffScrollContainer/BuffHBoxContainer/BuffBox")
+
+[node name="PlayerInfoPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -485.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="MoneyPanel" type="Panel" parent="PlayerInfoPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 235.0
+offset_bottom = 60.0
+
+[node name="MoneyLabel" type="Label" parent="PlayerInfoPanel/MoneyPanel"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 50.0
+text = "MONEY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MonryCountLabel" type="Label" parent="PlayerInfoPanel/MoneyPanel"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 225.0
+offset_bottom = 50.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorkPanel" type="Panel" parent="PlayerInfoPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -235.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 60.0
+grow_horizontal = 0
+
+[node name="WorkLabel" type="Label" parent="PlayerInfoPanel/WorkPanel"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 50.0
+text = "WORK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorkCountLabel" type="Label" parent="PlayerInfoPanel/WorkPanel"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 225.0
+offset_bottom = 50.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmotionPanel" type="Panel" parent="PlayerInfoPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 70.0
+offset_right = 475.0
+offset_bottom = 120.0
+mouse_filter = 2
+
+[node name="EmotionLabel" type="Label" parent="PlayerInfoPanel/EmotionPanel"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 50.0
+text = "EMO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmotionProgress" type="ProgressBar" parent="PlayerInfoPanel/EmotionPanel"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 465.0
+offset_bottom = 50.0
+step = 1.0
+rounded = true
+show_percentage = false
+
+[node name="BuffPanel" type="Panel" parent="PlayerInfoPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 130.0
+offset_right = 475.0
+offset_bottom = 190.0
+mouse_filter = 2
+
+[node name="BuffLabel" type="Label" parent="PlayerInfoPanel/BuffPanel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 60.0
+grow_vertical = 2
+text = "BUFF"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuffScrollContainer" type="ScrollContainer" parent="PlayerInfoPanel/BuffPanel"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 465.0
+offset_bottom = 60.0
+
+[node name="BuffHBoxContainer" type="HBoxContainer" parent="PlayerInfoPanel/BuffPanel/BuffScrollContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="BuffBox" type="Control" parent="PlayerInfoPanel/BuffPanel/BuffScrollContainer/BuffHBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_er1v2")
+
+[node name="InfoBuffDetailPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -485.0
+offset_top = 200.0
+offset_bottom = 530.0
+grow_horizontal = 0
+
+[node name="DetailBuffLabel" type="Label" parent="InfoBuffDetailPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "具体BUFF文本"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="PlayerInfoPanel/EmotionPanel/EmotionProgress" to="." method="_on_emotion_progress_mouse_entered"]
+[connection signal="mouse_exited" from="PlayerInfoPanel/EmotionPanel/EmotionProgress" to="." method="_on_emotion_progress_mouse_exited"]

@@ -90,6 +90,7 @@ focus_mode = 0
 text = "执行"
 
 [node name="DeckDetailPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

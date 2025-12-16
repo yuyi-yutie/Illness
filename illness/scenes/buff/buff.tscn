@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://uimtbx032j36"]
+
+[ext_resource type="Texture2D" uid="uid://d3ig2jnafv5tp" path="res://icon.svg" id="1_dxng2"]
+[ext_resource type="Script" uid="uid://bcru7mu43q4k0" path="res://scripts/buff/buff.gd" id="2_2wd8v"]
+
+[node name="Buff" type="TextureRect"]
+offset_right = 60.0
+offset_bottom = 60.0
+mouse_filter = 0
+texture = ExtResource("1_dxng2")
+expand_mode = 1
+script = ExtResource("2_2wd8v")
+buff_detail = "1111"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
