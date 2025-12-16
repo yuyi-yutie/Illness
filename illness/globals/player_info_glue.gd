@@ -30,15 +30,15 @@ func show_detail(detail_text : String) -> void:
 	buff_detail_label.text = detail_text
 	buff_detail_panel.visible = true
 
-var player_money : int = 666 :
+var player_money : int = 0 :
 	set(value):
 		player_money = value
 		player_money_label.text = str(player_money)
-var player_work : int = 6 :
+var player_work : int = 0 :
 	set(value):
 		player_work = value
 		player_work_label.text = str(player_work)
-var player_emotion : int = 50 :
+var player_emotion : int = 0 :
 	set(value):
 		player_emotion = value
 		player_emotion_progress.value = player_emotion

@@ -12,11 +12,21 @@ var is_open : bool = true :
 		is_open = value
 		self.visible = is_open
 
+var variable_dictionary :Dictionary = {
+	"money" : 1 ,
+	"work" : 2 ,
+	"emotion" : 3
+}
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.is_action_pressed("CallCMD"):
 			is_open = !is_open
+			variable_dictionary["money"]+=1
 		if event.is_action_pressed("CMDEnter"):
+			
+			if cmd_edit.text == "":
+				return
 			
 			var flag : bool = false
 			#用于返回命令是否有效
@@ -29,10 +39,15 @@ func _input(event: InputEvent) -> void:
 				
 				cmd_text.add_text(">> 按下~键以关闭/打开控制台" + "\n")
 				cmd_text.add_text(">> 目前支持以下命令:" + "\n")
+				
+				
+				# 这里缩进是6个空格
 				cmd_text.add_text("      add_week  ->  周数+1" + "\n")
 				cmd_text.add_text("      draw_card  ->  从牌堆中抽一张牌" + "\n")
 				cmd_text.add_text("      add_card  ->  创造一张空白牌放入手牌" + "\n")
 				cmd_text.add_text("      add_buff  -> 创造一个空buff" + "\n")
+				cmd_text.add_text("      variable = value  ->  将变量variable赋值为value，要求value为正整数" + "\n") 
+				cmd_text.add_text("      variable目前支持的变量有：money , work , emotion(<=100)" + "\n")
 			
 			# 加一周
 			if cmd_edit.text == "add_week":
@@ -84,6 +99,56 @@ func _input(event: InputEvent) -> void:
 				new_buff.buff_detail = str(randf())
 				cmd_text.add_text(">> 创造一个空buff" + "\n")
 			
+			if "=" in cmd_edit.text.split():
+				var no_space_text : String = ""
+				for every_char in cmd_edit.text.split():
+					if every_char != " ":
+						no_space_text += every_char
+				
+				var in_flag : int = 0
+				var variable_flag : int = 0
+				#用于检测赋值是否满足要求，3就是合格
+				if no_space_text.split("=").size() == 2:
+					in_flag += 1
+				
+				if no_space_text.split("=")[0] in variable_dictionary:
+					in_flag += 1
+					variable_flag = variable_dictionary[no_space_text.split("=")[0]]
+				
+				if no_space_text.split("=")[1].is_valid_int():
+					in_flag += 1
+				
+				flag = true
+				if in_flag != 3:
+					cmd_text.add_text(">> 赋值格式错误，使用variable = value的格式赋值，variable需为支持项,value需为整数" + "\n")
+					flag = false
+				else:
+					if int(no_space_text.split("=")[1]) < 0:
+						cmd_text.add_text(">> 赋值失败，值无法小于0" + "\n")
+						
+						cmd_text.add_text(">> 无效命令，输入\"-h\"获取帮助" + "\n")
+						cmd_edit.text = ""
+						# 这里强制return了就质朴一点吧
+						
+						return
+					match variable_flag:
+						1:
+							PlayerInfoGlue.player_money = int(no_space_text.split("=")[1])
+						2:
+							PlayerInfoGlue.player_work = int(no_space_text.split("=")[1])
+						3:
+							if int(no_space_text.split("=")[1]) > 100:
+								cmd_text.add_text(">> 赋值失败，心情值无法大于100" + "\n")
+								
+								cmd_text.add_text(">> 无效命令，输入\"-h\"获取帮助" + "\n")
+								cmd_edit.text = ""
+								
+								return
+							PlayerInfoGlue.player_emotion = int(no_space_text.split("=")[1])
+					cmd_text.add_text(">> 赋值成功" + "\n")
+				
+			
+			
 			if flag == false:
 				cmd_text.add_text(">> 无效命令，输入\"-h\"获取帮助" + "\n")
 			
@@ -100,6 +165,8 @@ func _input(event: InputEvent) -> void:
 			current_drag_mouse_position = get_viewport().get_mouse_position()
 			global_position = start_drag_position + current_drag_mouse_position - start_drag_mouse_position 
 
+#region 鼠标检测与拖拽相关
+
 var mouse_in : bool = false
 
 var start_drag_position : Vector2
@@ -114,3 +181,5 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	mouse_in = false
+
+#endregion
