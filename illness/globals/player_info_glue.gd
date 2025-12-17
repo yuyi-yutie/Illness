@@ -11,6 +11,7 @@ var current_hover_buff : Buff = null:
 		else:
 			show_detail(current_hover_buff.buff_detail)
 
+# 为true时buff详情面板显示心情buff列表
 var show_emotion_buff : bool = false:
 	set(value):
 		show_emotion_buff = value
@@ -63,6 +64,14 @@ func add_buff(target : Buff) -> void:
 	target.initialize(buff_box)
 	refresh_buff_box()
 
+func remove_buff(target : Buff) -> void:
+	current_buff_array.erase(target)
+	if target.parent:
+		target.parent.remove_child(target)
+		target.parent = null
+	target.queue_free()
+	refresh_buff_box()
+	
 
 var buff_box : BuffBox
 

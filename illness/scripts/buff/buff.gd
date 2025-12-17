@@ -10,6 +10,17 @@ enum TimeType {
 	EveryYear
 }
 
+enum LifeType {
+	NextDay ,
+	NextWeek ,
+	NextMonth ,
+	# 可以保证没有下一年
+	ThisWeek ,
+	ThisMonth ,
+	ThisYear ,
+	Forever
+}
+
 @export var time_type : TimeType
 
 var parent : Control

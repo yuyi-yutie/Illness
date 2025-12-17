@@ -85,6 +85,8 @@ func _on_execute_button_mouse_exited() -> void:
 	deck_detail_panel.visible = false
 
 # 这是点击执行按钮执行的逻辑，后面要根据执行顺序改
+# 将要执行的卡牌在CalenderGlue里，变量是card_in_queue_medical/activity : Array[Card]
+# buff列表在PlayerInfoGlue里，变量是current_buff_array : Array[Buff]
 func _on_execute_button_button_down() -> void:
 	for child in CalenderGlue.card_in_queue_medical:
 		child.execute()

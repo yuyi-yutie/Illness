@@ -32,6 +32,7 @@ func _input(event: InputEvent) -> void:
 			
 			cmd_text.add_text("> " + cmd_edit.text + "\n")
 			
+			# 获得帮助
 			if cmd_edit.text == "-h":
 				
 				flag = true
@@ -45,8 +46,9 @@ func _input(event: InputEvent) -> void:
 				cmd_text.add_text("      draw_card  ->  从牌堆中抽一张牌" + "\n")
 				cmd_text.add_text("      add_card  ->  创造一张空白牌放入手牌" + "\n")
 				cmd_text.add_text("      add_buff  -> 创造一个空buff" + "\n")
+				cmd_text.add_text("      clear_buffs  ->  清空buff" + "\n")
 				cmd_text.add_text("      variable = value  ->  将变量variable赋值为value，要求value为正整数" + "\n") 
-				cmd_text.add_text("      variable目前支持的变量有：money , work , emotion(<=100)" + "\n")
+				cmd_text.add_text("      (variable目前支持的变量有：money , work , emotion(<=100))" + "\n")
 			
 			# 加一周
 			if cmd_edit.text == "add_week":
@@ -151,10 +153,32 @@ func _input(event: InputEvent) -> void:
 							PlayerInfoGlue.player_emotion = int(no_space_text.split("=")[1])
 					cmd_text.add_text(">> 赋值成功" + "\n")
 			
-			#---要写更多命令的话在这里写---
+			# 清空buff
+			if cmd_edit.text == "clear_buffs":
+				
+				flag = true
+				
+				var buffs : Array[Buff] = PlayerInfoGlue.current_buff_array
+				while buffs.size() > 0:
+					PlayerInfoGlue.remove_buff(buffs[0])
+				
+				cmd_text.add_text(">> 清空buff" + "\n")
+			
+			#region ---要写更多命令的话在这里写---
+			
+			'''
+			格式为
+			if 条件:
+				(若成功)flag = true
+				具体逻辑
+				cmd_text.add_text(成功提示 + "\n")
+				(别忘了在-h里写上提示)
+			'''
+			
+			#endregion
 			
 			if flag == false:
-				cmd_text.add_text(">> 无效命令，输入\"-h\"获取帮助" + "\n")
+				cmd_text.add_text(">> 无效命令，发送\"-h\"获取帮助" + "\n")
 			
 			cmd_edit.text = ""
 	if event is InputEventMouseButton:
