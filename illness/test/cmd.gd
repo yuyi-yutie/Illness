@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 class_name cmd
 
 @export var cmd_text : RichTextLabel
@@ -7,7 +7,7 @@ class_name cmd
 const CARD = preload("uid://cqr2tljf25i0j")
 const BUFF = preload("uid://uimtbx032j36")
 
-var is_open : bool = true :
+var is_open : bool = false :
 	set(value):
 		is_open = value
 		self.visible = is_open
@@ -22,7 +22,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.is_action_pressed("CallCMD"):
 			is_open = !is_open
-			variable_dictionary["money"]+=1
 		if event.is_action_pressed("CMDEnter"):
 			
 			if cmd_edit.text == "":
@@ -87,6 +86,8 @@ func _input(event: InputEvent) -> void:
 					Card.CardType.Activity:
 						type_name = "活动卡"
 				new_card._name = type_name + str(new_card.time)
+				# 以上为创建一张牌的标准流程
+				
 				cmd_text.add_text(">> 创造一张空白牌放入手牌" + "\n")
 			
 			# 创造一个空buff
@@ -97,8 +98,11 @@ func _input(event: InputEvent) -> void:
 				var new_buff : Buff = BUFF.instantiate()
 				PlayerInfoGlue.add_buff(new_buff)
 				new_buff.buff_detail = str(randf())
+				# 以上为创建一个buff的标准流程
+				
 				cmd_text.add_text(">> 创造一个空buff" + "\n")
 			
+			# 给变量赋值
 			if "=" in cmd_edit.text.split():
 				var no_space_text : String = ""
 				for every_char in cmd_edit.text.split():
@@ -122,7 +126,7 @@ func _input(event: InputEvent) -> void:
 				if in_flag != 3:
 					cmd_text.add_text(">> 赋值格式错误，使用variable = value的格式赋值，variable需为支持项,value需为整数" + "\n")
 					flag = false
-				else:
+				else:# 正式赋值
 					if int(no_space_text.split("=")[1]) < 0:
 						cmd_text.add_text(">> 赋值失败，值无法小于0" + "\n")
 						
@@ -146,15 +150,15 @@ func _input(event: InputEvent) -> void:
 								return
 							PlayerInfoGlue.player_emotion = int(no_space_text.split("=")[1])
 					cmd_text.add_text(">> 赋值成功" + "\n")
-				
 			
+			#---要写更多命令的话在这里写---
 			
 			if flag == false:
 				cmd_text.add_text(">> 无效命令，输入\"-h\"获取帮助" + "\n")
 			
 			cmd_edit.text = ""
 	if event is InputEventMouseButton:
-		if event.is_action_pressed("LeftClick"):
+		if event.is_action_pressed("LeftClick") and mouse_in:
 			is_dragging = true
 			start_drag_position = self.global_position
 			start_drag_mouse_position = get_viewport().get_mouse_position()

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bmh7ju3vuexap" path="res://scenes/play_scene/shop.tscn" id="5_vw7vn"]
 [ext_resource type="PackedScene" uid="uid://cfo7lbrnne72y" path="res://scenes/play_scene/small_calender.tscn" id="6_kp6hd"]
 [ext_resource type="PackedScene" uid="uid://b63rspcoq8yg2" path="res://scenes/play_scene/player_info.tscn" id="7_ex3eb"]
-[ext_resource type="Script" uid="uid://nrp86vy616cy" path="res://test/cmd.gd" id="8_ejibu"]
+[ext_resource type="PackedScene" uid="uid://cowidug8dcx0q" path="res://scenes/play_scene/cmd.tscn" id="8_kp6hd"]
 
 [node name="PlayScene" type="Control"]
 layout_mode = 3
@@ -37,35 +37,6 @@ layout_mode = 1
 [node name="PlayerInfo" parent="." instance=ExtResource("7_ex3eb")]
 layout_mode = 1
 
-[node name="CMD" type="Panel" parent="." node_paths=PackedStringArray("cmd_text", "cmd_edit")]
+[node name="CMD" parent="." instance=ExtResource("8_kp6hd")]
+visible = false
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -400.0
-offset_right = 400.0
-offset_bottom = 300.0
-grow_horizontal = 2
-mouse_filter = 1
-script = ExtResource("8_ejibu")
-cmd_text = NodePath("CMDText")
-cmd_edit = NodePath("CMDEdit")
-
-[node name="CMDText" type="RichTextLabel" parent="CMD"]
-layout_mode = 0
-offset_right = 800.0
-offset_bottom = 250.0
-focus_mode = 0
-scroll_following = true
-
-[node name="CMDEdit" type="LineEdit" parent="CMD"]
-layout_mode = 0
-offset_top = 250.0
-offset_right = 800.0
-offset_bottom = 300.0
-placeholder_text = "输入\"-h\"获取帮助"
-keep_editing_on_text_submit = true
-select_all_on_focus = true
-
-[connection signal="mouse_entered" from="CMD" to="CMD" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CMD" to="CMD" method="_on_mouse_exited"]
