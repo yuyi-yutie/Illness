@@ -24,6 +24,16 @@ enum TimeType {
 @export var time_type : TimeType
 #endregion
 
+# 别忘了level最高为3
+var level : int = 1 :
+	set(value):
+		level = value
+		level_up()
+
+# 这是升级函数，每次level增加时调用，要覆写
+func level_up() -> void:
+	pass
+
 @export var _name : String = "卡牌名" :
 	set(value):
 		_name = value
@@ -44,7 +54,6 @@ var parent : Control
 #测试
 func initialize(parameter : Control) -> void:
 	parent = parameter
-	#id = DeckGlue.get_id(self)
 	_name = _name
 	time = time
 
@@ -99,7 +108,7 @@ func put_into_queue() -> void:
 			CalenderGlue.add_card_in_queue(self)
 
 func execute() -> void:
-	print("执行卡牌" + str(id))
+	print("执行卡牌" + str(card_detail))
 	
 	custom_execute()
 	

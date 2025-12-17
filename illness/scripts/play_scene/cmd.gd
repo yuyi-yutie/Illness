@@ -73,7 +73,7 @@ func _input(event: InputEvent) -> void:
 				
 				var new_card : Card = CARD.instantiate()
 				new_card.id = DeckGlue.get_id(new_card)
-				new_card.time = randi_range(0,3)
+				new_card.time = randi_range(1,2)
 				new_card.card_detail = str(randf())
 				CalenderGlue.put_card_into_hand(new_card)
 				if new_card.time == 0:

@@ -87,9 +87,46 @@ func _on_execute_button_mouse_exited() -> void:
 # 这是点击执行按钮执行的逻辑，后面要根据执行顺序改
 # 将要执行的卡牌在CalenderGlue里，变量是card_in_queue_medical/activity : Array[Card]
 # buff列表在PlayerInfoGlue里，变量是current_buff_array : Array[Buff]
+# 同时间执行顺序是先医疗再活动，最后buff
 func _on_execute_button_button_down() -> void:
-	for child in CalenderGlue.card_in_queue_medical:
-		child.execute()
-	for child in CalenderGlue.card_in_queue_activity:
-		child.execute()
+	
+	var card_in_queue_medical : Array[Card] = CalenderGlue.card_in_queue_medical
+	var card_in_queue_activity : Array[Card] = CalenderGlue.card_in_queue_activity
+	
+	var current_time : int = 0
+	
+	var medical_time_flag_array : Array[int] = []
+	var activity_time_flag_array : Array[int] = []
+	
+	for medical_card in card_in_queue_medical:
+		medical_time_flag_array.append(medical_card.time)
+	for activity_card in card_in_queue_activity:
+		activity_time_flag_array.append(activity_card.time)
+	
+	var current_medical_card_flag : int = 0
+	var current_activity_card_flag : int = 0
+	
+	while(current_time <= 7):
+		
+		var medical_cal_time_sum : int = 0
+		for cal_time in medical_time_flag_array:
+			medical_cal_time_sum += cal_time
+			if medical_cal_time_sum == current_time:
+				card_in_queue_medical[current_medical_card_flag].execute()
+				current_medical_card_flag += 1
+		
+		var activity_cal_time_sum : int = 0
+		for cal_time in activity_time_flag_array:
+			activity_cal_time_sum += cal_time
+			if activity_cal_time_sum == current_time:
+				card_in_queue_activity[current_activity_card_flag].execute()
+				current_activity_card_flag += 1
+		
+		#---这里写每天执行的buff---
+		
+		current_time += 1
+	
+	#---这里写每周执行的buff---
+	
+	#---这里写每周结束时的固定逻辑（包括病毒增长，商店刷新等）---
 	CalenderGlue.round_refresh()

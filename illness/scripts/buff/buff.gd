@@ -6,12 +6,12 @@ class_name Buff
 enum TimeType {
 	EveryDay ,
 	EveryWeek ,
-	EveryMonth ,
-	EveryYear
+	EveryMonth
 }
+#buff的执行优先级是最低的，所以buff执行永远是最后执行
+
 
 enum LifeType {
-	NextDay ,
 	NextWeek ,
 	NextMonth ,
 	# 可以保证没有下一年
@@ -22,6 +22,7 @@ enum LifeType {
 }
 
 @export var time_type : TimeType
+@export var life_type : LifeType
 
 var parent : Control
 # buff的父级可以是玩家或者是病毒

@@ -3,17 +3,20 @@ extends Node
 var year : int = 1111:
 	set(value):
 		year = value
+		PlayerInfoGlue.year_over()
 		for month_progress in month_progress_array:
 			month_progress.value = 0
 var month : int = 1:
 	set(value):
 		month = value
+		PlayerInfoGlue.month_over()
 		if month == 13:
 			year += 1
 			month = 1
 var week : int = 1:
 	set(value):
 		week = value
+		PlayerInfoGlue.week_over()
 		if week == 5:
 			month += 1
 			week = 1

@@ -83,3 +83,26 @@ func refresh_buff_box() -> void:
 	buff_box.custom_minimum_size.x = current_buff_array.size() * buff_size.x
 	for buff_index in range(current_buff_array.size()):
 		current_buff_array[buff_index].position.x = buff_index * buff_size.x
+
+# 这三个over函数都很屎，后面再优化吧
+func week_over() -> void:
+	print("周结束")
+	for buff in current_buff_array:
+		if buff.life_type == Buff.LifeType.NextWeek:
+			buff.life_type = Buff.LifeType.ThisWeek
+		elif buff.life_type == Buff.LifeType.ThisWeek:
+			remove_buff(buff)
+
+func month_over() -> void:
+	print("月结束")
+	for buff in current_buff_array:
+		if buff.life_type == Buff.LifeType.NextMonth:
+			buff.life_type = Buff.LifeType.ThisMonth
+		elif buff.life_type == Buff.LifeType.ThisMonth:
+			remove_buff(buff)
+
+func year_over() -> void:
+	print("年结束")
+	for buff in current_buff_array:
+		if buff.life_type == Buff.LifeType.ThisYear:
+			remove_buff(buff)
